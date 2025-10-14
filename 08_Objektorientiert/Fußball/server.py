@@ -5,7 +5,11 @@ app = Flask(__name__)
 # Route für die Hauptseite
 @app.route('/')
 def home():
-    return "Server ist bereit und wartet auf Anfragen."
+    return "Server ist bereit und wartet auf Anfragen. hallo"
+
+@app.route('/profil')
+def impressum():
+    return "<html><body><h1>Impressum</h1><p>Ich bin Theodor</p></body></html>"
 
 # Route zum Empfangen von Nachrichten
 @app.route('/message', methods=['POST'])
