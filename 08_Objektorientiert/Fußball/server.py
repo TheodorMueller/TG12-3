@@ -73,7 +73,15 @@ def handle_spieler():
 # Spieler laden
 @app.route('/players', methods=['GET', 'POST'])
 def show_players():
-    #...
+    if os.path.exists('daten.json'):
+        with open('daten.json', 'r') as f:
+            try:
+                spieler_liste = json.load(f)
+            except json.JSONDecodeError:
+                spieler_liste = []
+    else:
+        spieler_liste = []
+    
 
 
     # HTML-Seite mit Team- und Positions-Auswahl
