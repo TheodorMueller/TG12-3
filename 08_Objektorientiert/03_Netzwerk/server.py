@@ -1,7 +1,11 @@
 from flask import Flask, request,jsonify
+from pydantic import BaseModel, Field, ValidationError 
+from model import Spieler
 
 
 app = Flask(__name__)
+
+spieler_liste = []
 
 # Funktion
 def Anzeige():
@@ -31,6 +35,37 @@ def handle_message():
     
     return jsonify({"response": response_message})
 
+
+# Spieler
+@app.route("/spieler", methods=["POST"])
+def handle_Spieler():
+    """Erstellt einen neuen Spieler"""
+    try:
+        data = request.get_json()
+        spieler = Spieler(**data)
+        spieler_liste.append(spieler)
+        return jsonify({
+            "status": "ok",
+            "message": "Spieler erfolgreich erstellt!",
+            "spieler": spieler.model_dump()
+        }), 201
+    except ValidationError as e:
+        return jsonify({
+            "status": "error",
+            "message": "Validierung fehlgeschlagen",
+            "details": e.errors()
+        }), 400
+
+
+
+@app.route("/anzeigeSpieler")
+def Anzeige_Spieler():
+    d = ""
+    for i in spieler_liste[i]:
+        for d in spieler_liste:
+            d = (f"{d} <br> ")
+        print(d)
+        return d
 
 
 if __name__ == '__main__':
