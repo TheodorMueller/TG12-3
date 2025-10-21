@@ -60,12 +60,13 @@ def handle_Spieler():
 
 @app.route("/anzeigeSpieler")
 def Anzeige_Spieler():
+    line = ""
     d = ""
-    for i in spieler_liste[i]:
-        for d in spieler_liste:
-            d = (f"{d} <br> ")
-        print(d)
-        return d
+    for d in spieler_liste:
+        line = (f"{d} <br> {line} <br> ")
+    return f"<html><body><h1>Vorhandene Spieler</h1><br>{line}</body></html>"
+
+
 
 
 if __name__ == '__main__':
