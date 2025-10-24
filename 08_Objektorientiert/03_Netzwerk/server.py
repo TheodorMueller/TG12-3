@@ -15,7 +15,7 @@ if os.path.exists(dateiname):
     with open(dateiname, "r", encoding="utf-8") as f:
         daten = json.load(f)
     spieler_liste = [Spieler(**s) for s in daten]
-    print("Geladene Spieler: ")
+    print("📂Geladene Spieler: ")
     for s in spieler_liste:
         print(s)
 else:
