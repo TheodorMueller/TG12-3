@@ -1,9 +1,9 @@
-from flask import Flask, request,jsonify
+# Imports
+from flask import Flask, request, jsonify, render_template
 from pydantic import BaseModel, Field, ValidationError 
 from model import Spieler
 import json 
 import os
-
 
 
 app = Flask(__name__)
@@ -18,11 +18,9 @@ if os.path.exists(dateiname):
     print("Geladene Spieler: ")
     for s in spieler_liste:
         print(s)
-
 else:
     spieler_liste = []
     print("Leere Spielerliste erstellt!")
-
 
 
 # Funktion
@@ -41,6 +39,12 @@ def home():
 def impressum():
     return "<html><body><h1>Impressum</h1><p>Ich bin Theodor</p></body></html>"
 
+# HTML Seite
+@app.route('/steckbrief')
+def steckbrief():
+    return render_template('index.html')
+
+
 # Route zum Empfangen von Nachrichten
 @app.route('/message', methods=['POST'])
 def handle_message():
@@ -54,8 +58,8 @@ def handle_message():
     return jsonify({"response": response_message})
 
 
-# Spieler
-@app.route("/spieler", methods=["POST"])
+# Spieler erstellen
+@app.route('/spieler', methods=['POST'])
 def handle_Spieler():
     """Erstellt einen neuen Spieler"""
     try:
@@ -80,7 +84,8 @@ def handle_Spieler():
         }), 400
     
 
-@app.route("/anzeigeSpieler")
+# Spieler anzeigen
+@app.route('/anzeigeSpieler')
 def Anzeige_Spieler():
     line = ""
     d = ""
@@ -91,8 +96,8 @@ def Anzeige_Spieler():
     return f"<html><body><h1>Vorhandene Spieler</h1><br>{line}</body></html>"
 
 
-
-@app.route("/loeschen", methods=["POST"])
+# Soieler löschen
+@app.route('/loeschen', methods=['POST'])
 def Liste_loeschen():
     global spieler_liste 
     spieler_liste = []

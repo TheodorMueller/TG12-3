@@ -1,23 +1,17 @@
 import requests
 import json
 
+# Serveradressen mit denen der Client kommunizieren soll
 URL = "http://127.0.0.1:12345/spieler"
 URL2 = "http://127.0.0.1:12345/loeschen"
 
-# Später durch eingabe über Terminal ersetzt
-"""spieler_daten = {
-    "name": "Franz II",
-    "jahrgang": 2000,
-    "staerke": 10,
-    "torschuss": 10,
-    "motivation": 10
-}"""
-
 auftrag = 0
 
+# Dauer abfrage ob Spieler erstellt oder gelöscht werden soll
 while True:
     auftrag = int(input("1 = Spieler erstellen, 2 = Spielerliste löschen: "))
 
+    # Spieler erstellen
     while auftrag == 1:
         spieler_daten = {
             "name": str(input("Name: ")),
@@ -40,6 +34,7 @@ while True:
 
         auftrag = 0
 
+    # Spieler löschen
     while auftrag == 2:
         response = requests.post(URL2)
         print("Statuscode:", response.status_code)
