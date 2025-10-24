@@ -2,6 +2,7 @@ import requests
 import json
 
 URL = "http://127.0.0.1:12345/spieler"
+URL2 = "http://127.0.0.1:12345/loeschen"
 
 # Später durch eingabe über Terminal ersetzt
 """spieler_daten = {
@@ -12,22 +13,43 @@ URL = "http://127.0.0.1:12345/spieler"
     "motivation": 10
 }"""
 
+auftrag = 0
+
 while True:
-    spieler_daten = {
-        "name": str(input("Name: ")),
-        "jahrgang": int(input("Jahrgang: ")),
-        "staerke": int(input("Staerke: ")),
-        "torschuss": int(input("Torschuss: ")),
-        "motivation": int(input("Motivation: "))
-    }
+    auftrag = int(input("1 = Spieler erstellen, 2 = Spielerliste löschen: "))
+
+    while auftrag == 1:
+        spieler_daten = {
+            "name": str(input("Name: ")),
+            "jahrgang": int(input("Jahrgang: ")),
+            "staerke": int(input("Staerke: ")),
+            "torschuss": int(input("Torschuss: ")),
+            "motivation": int(input("Motivation: "))
+        }
 
 
-    response = requests.post(URL, json=spieler_daten)
-    print("Statuscode:", response.status_code)
+        response = requests.post(URL, json=spieler_daten)
+        print("Statuscode:", response.status_code)
 
-    if response.status_code == 201:
-        print("✅Spieler erfolgreich erstellt:")
-        print(json.dumps(response.json(), indent=4, ensure_ascii=False))
-    else:
-        print("❌Fehler bei der Erstellung:")
-        print(json.dumps(response.json(), indent=4, ensure_ascii=False))
+        if response.status_code == 201:
+            print("✅Spieler erfolgreich erstellt:")
+            print(json.dumps(response.json(), indent=4, ensure_ascii=False))
+        else:
+            print("❌Fehler bei der Erstellung:")
+            print(json.dumps(response.json(), indent=4, ensure_ascii=False))
+
+        auftrag = 0
+
+    while auftrag == 2:
+        bestaetigung = input("Bestätigen? -> ja/nein")
+        response = requests.post(URL2, json=bestaetigung)
+        print("Statuscode:", response.status_code)
+
+        if response.status_code == 201:
+            print("Ausgeführt")
+            print(json.dumps(response.json(), indent=4, ensure_ascii=False))
+        else:
+            print("❌Fehler:")
+            print(json.dumps(response.json(), indent=4, ensure_ascii=False))
+    
+        auftrag = 0

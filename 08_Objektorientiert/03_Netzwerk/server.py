@@ -1,11 +1,27 @@
 from flask import Flask, request,jsonify
 from pydantic import BaseModel, Field, ValidationError 
 from model import Spieler
+import json 
+import os
+
 
 
 app = Flask(__name__)
 
-spieler_liste = []
+dateiname = "spieler.json"
+
+# schaut ob datei schon existiert->läd daten in spieler_liste
+if os.path.exists(dateiname):
+    with open(dateiname, "r", encoding="utf-8") as f:
+        daten = json.load(f)
+    spieler_liste = [Spieler(**s) for s in daten]
+    print("Spieler werden geladen")
+
+else:
+    spieler_liste = []
+    print("Leere Spielerliste erstellt!")
+
+
 
 # Funktion
 def Anzeige():
@@ -44,9 +60,14 @@ def handle_Spieler():
         data = request.get_json()
         spieler = Spieler(**data)
         spieler_liste.append(spieler)
+        # Spielerdaten in Json-datei speichern
+        with open("spieler.json", "w", encoding="utf-8") as f:
+            json.dump([s.model_dump() for s in spieler_liste], f, ensure_ascii=False, indent=4)
+        print("✅ Spieler wurden in 'spieler.json' gespeichert.")
+
         return jsonify({
             "status": "ok",
-            "message": "Spieler erfolgreich erstellt!",
+            "message": "Spieler erfolgreich erstellt und gespeichert!",
             "spieler": spieler.model_dump()
         }), 201
     except ValidationError as e:
@@ -55,18 +76,23 @@ def handle_Spieler():
             "message": "Validierung fehlgeschlagen",
             "details": e.errors()
         }), 400
-
-
+    
 
 @app.route("/anzeigeSpieler")
 def Anzeige_Spieler():
     line = ""
     d = ""
+    b = 1
     for d in spieler_liste:
-        line = (f"{d} <br> {line} <br> ")
+        line = (f"{line} <br> Spieler {b}: {d} <br> ")
+        b+=1
     return f"<html><body><h1>Vorhandene Spieler</h1><br>{line}</body></html>"
 
 
+
+@app.route("/loeschen", methods=["POST"])
+def liste_loeschen():
+    pass
 
 
 if __name__ == '__main__':
