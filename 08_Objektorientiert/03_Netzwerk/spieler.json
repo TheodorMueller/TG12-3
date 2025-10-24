@@ -1,16 +1,9 @@
 [
     {
-        "name": "Theo",
-        "jahrgang": 1999,
-        "staerke": 5,
-        "torschuss": 5,
-        "motivation": 5
-    },
-    {
-        "name": "Felix",
-        "jahrgang": 1999,
-        "staerke": 1,
-        "torschuss": 1,
-        "motivation": 1
+        "name": "Thomas",
+        "jahrgang": 1975,
+        "staerke": 6,
+        "torschuss": 4,
+        "motivation": 3
     }
 ]

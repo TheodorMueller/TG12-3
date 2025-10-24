@@ -44,11 +44,12 @@ while True:
         response = requests.post(URL2)
         print("Statuscode:", response.status_code)
 
+        
         if response.status_code == 201:
-            print("Ausgeführt")
-            print(json.dumps(response.json(), indent=4, ensure_ascii=False))
+            print("✅Spieler erfolgreich erstellt:")
+            #print(json.dumps(response.json(), indent=4, ensure_ascii=False))
         else:
-            print("❌Fehler:")
-            print(json.dumps(response.json(), indent=4, ensure_ascii=False))
-    
+            print("❌Fehler beim Löschen: ")
+            #print(json.dumps(response.json(), indent=4, ensure_ascii=False))
+            
         auftrag = 0

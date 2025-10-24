@@ -92,16 +92,13 @@ def Anzeige_Spieler():
 
 
 
-@app.route("/loeschen")
-def liste_loeschen():
-    global spieler_liste
+@app.route("/loeschen", methods=["POST"])
+def Liste_loeschen():
+    global spieler_liste 
     spieler_liste = []
-    with open(dateiname, "w", encoding="utf-8") as f:
-        json.dump([s.model_dump() for s in spieler_liste], f, ensure_ascii=False, indent=4)
-    print("Spieler erfolgreich gelöscht!")
-    response_message = "Alle Spieler erfolgreich gelöscht"
-
-    return jsonify({"response": response_message}), 201
+    with open("spieler.json", "w", encoding="utf-8") as f:
+        json.dump([], f, ensure_ascii=False ,indent=4)
+    return jsonify({"": ""}), 201
         
  
 
