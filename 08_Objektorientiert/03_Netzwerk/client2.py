@@ -41,7 +41,7 @@ while True:
 
         
         if response.status_code == 201:
-            print("✅Spieler erfolgreich erstellt:")
+            print("✅Spielerliste gelöscht:")
             #print(json.dumps(response.json(), indent=4, ensure_ascii=False))
         else:
             print("❌Fehler beim Löschen: ")
