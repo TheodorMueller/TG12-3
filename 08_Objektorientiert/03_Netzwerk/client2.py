@@ -41,8 +41,7 @@ while True:
         auftrag = 0
 
     while auftrag == 2:
-        bestaetigung = input("Bestätigen? -> ja/nein")
-        response = requests.post(URL2, json=bestaetigung)
+        response = requests.post(URL2)
         print("Statuscode:", response.status_code)
 
         if response.status_code == 201:

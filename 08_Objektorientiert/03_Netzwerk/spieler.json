@@ -1,51 +1,16 @@
 [
     {
         "name": "Theo",
-        "jahrgang": 2000,
-        "staerke": 5,
-        "torschuss": 5,
-        "motivation": 5
-    },
-    {
-        "name": "Eray",
         "jahrgang": 1999,
         "staerke": 5,
         "torschuss": 5,
         "motivation": 5
     },
     {
-        "name": "Erei",
-        "jahrgang": 2005,
+        "name": "Felix",
+        "jahrgang": 1999,
         "staerke": 1,
         "torschuss": 1,
         "motivation": 1
-    },
-    {
-        "name": "nein",
-        "jahrgang": 2000,
-        "staerke": 6,
-        "torschuss": 4,
-        "motivation": 7
-    },
-    {
-        "name": "nein",
-        "jahrgang": 1985,
-        "staerke": 1,
-        "torschuss": 1,
-        "motivation": 1
-    },
-    {
-        "name": "Theo",
-        "jahrgang": 2000,
-        "staerke": 2,
-        "torschuss": 2,
-        "motivation": 2
-    },
-    {
-        "name": "Theo",
-        "jahrgang": 2000,
-        "staerke": 9,
-        "torschuss": 8,
-        "motivation": 7
     }
 ]

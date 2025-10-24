@@ -15,7 +15,9 @@ if os.path.exists(dateiname):
     with open(dateiname, "r", encoding="utf-8") as f:
         daten = json.load(f)
     spieler_liste = [Spieler(**s) for s in daten]
-    print("Spieler werden geladen")
+    print("Geladene Spieler: ")
+    for s in spieler_liste:
+        print(s)
 
 else:
     spieler_liste = []
@@ -90,10 +92,18 @@ def Anzeige_Spieler():
 
 
 
-@app.route("/loeschen", methods=["POST"])
+@app.route("/loeschen")
 def liste_loeschen():
-    pass
+    global spieler_liste
+    spieler_liste = []
+    with open(dateiname, "w", encoding="utf-8") as f:
+        json.dump([s.model_dump() for s in spieler_liste], f, ensure_ascii=False, indent=4)
+    print("Spieler erfolgreich gelöscht!")
+    response_message = "Alle Spieler erfolgreich gelöscht"
 
+    return jsonify({"response": response_message}), 201
+        
+ 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=12345)  # Server starten
