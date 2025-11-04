@@ -3,11 +3,11 @@ document.getElementById("spielerForm").addEventListener("submit", async function
 
     // Formulardaten sammeln
     const spieler = {
-        name: document.getElementById("name").nodeValue,
-        jahrgang: parseInt(document.getElementById("jahrgang").nodeValue),
-        staerke: parseInt(document.getElementById("staerke").nodeValue),
-        torschuss: parseInt(document.getElementById("torschuss").nodeValue),
-        motivatient: parseInt(document.getElementById("motivation").nodeValue)
+        name: document.getElementById("name").value,
+        jahrgang: parseInt(document.getElementById("jahrgang").value),
+        staerke: parseInt(document.getElementById("staerke").value),
+        torschuss: parseInt(document.getElementById("torschuss").value),
+        motivation: parseInt(document.getElementById("motivation").value)
     };
 
     // Daten an den Server senden

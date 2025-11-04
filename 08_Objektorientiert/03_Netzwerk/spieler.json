@@ -1,1 +1,16 @@
-[]
+[
+    {
+        "name": "Theo",
+        "jahrgang": 1975,
+        "staerke": 1,
+        "torschuss": 1,
+        "motivation": 1
+    },
+    {
+        "name": "Theo",
+        "jahrgang": 1975,
+        "staerke": 1,
+        "torschuss": 1,
+        "motivation": 1
+    }
+]

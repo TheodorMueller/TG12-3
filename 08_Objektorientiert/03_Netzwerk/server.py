@@ -8,7 +8,9 @@ from flask_cors import CORS
 
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=[
+    "https://musical-fishstick-r4p756xv7p463wx5g-5500.app.github.dev"
+])
 
 
 dateiname = "spieler.json"
@@ -107,10 +109,11 @@ def Liste_loeschen():
     with open("spieler.json", "w", encoding="utf-8") as f:
         json.dump([], f, ensure_ascii=False ,indent=4)
     return jsonify({"": ""}), 201
-        
- 
+    
+
+
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=12345)  # Server starten
+    app.run(host='0.0.0.0', port=12345, debug=True)  # Server starten
 
 # Ab hier darf nichts mehr stehen!!!
