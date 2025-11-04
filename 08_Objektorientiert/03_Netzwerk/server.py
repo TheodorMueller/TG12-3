@@ -4,9 +4,12 @@ from pydantic import BaseModel, Field, ValidationError
 from model import Spieler
 import json 
 import os
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
+
 
 dateiname = "spieler.json"
 
