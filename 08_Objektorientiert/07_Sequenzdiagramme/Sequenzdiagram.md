@@ -1,5 +1,6 @@
 # Sequenzdiagramm
 ## 07b Aufgabe 1
+### Zählschleife
 ```mermaid
 sequenceDiagram
 
@@ -23,3 +24,8 @@ actor Akteur
     deactivate main
    
 ```
+### Break Schleife
+
+### While Schleife
+
+### Do-While Schleife
