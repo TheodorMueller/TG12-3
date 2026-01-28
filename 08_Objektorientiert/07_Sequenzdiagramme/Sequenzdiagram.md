@@ -29,3 +29,30 @@ actor Akteur
 ### While Schleife
 
 ### Do-While Schleife
+
+
+# Klassendiagramm
+```mermaid
+classDiagram
+
+class Steuerung{
+    -aAnzSchueler:GZ
+    +anzeigenFehlzeiten(pVon:Datum, pBis:Datum, pSchueler:Text)GZ
+    +anzeigenMNoten(fach:Text, Schueler:Text)GZ
+}
+class GUI{
+    +clickFehlzeiten(pVon:Datum, pBis:Datum, pSchueler:Text)GZ
+    +clickMNoten(fach:Text, Schueler:Text)GZ
+    +anzeigenFehlzeiten(pMinuten:GZ)GZ
+    +anzeigenMNoten(ListeMNoten:Text)Text
+}
+class Schueler{
+    -aName:Text
+    -aAnzAnwesenheit:GZ
+    -aAnzFaecher:GZ
+    -aAnzNoten:GZ
+    +getName()Text
+    +berechnenFehlzeiten(pVon:Datum, pBis:Datum)GZ
+    +berechneDurchschnittSchriftlich(pFach:Text)FKZ
+}
+```
